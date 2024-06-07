@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send a Message</title>
+    <title>Answer Question</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="scripts.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Send a Message</h1>
-        <form id="questionForm">
-            <textarea id="question" placeholder="Type your anonymous message here..." required></textarea>
-            <button type="submit">Send</button>
+        <h1>Send an Anonymous Message</h1>
+        <form id="answerForm">
+            <textarea id="message" placeholder="Type your message here..." required></textarea>
+            <button type="submit">Send Message</button>
         </form>
-        <button id="createOwnLink" style="display: none;" onclick="redirectToHome()">Create Your Own Link</button>
     </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const user = urlParams.get('user');
+        
+        document.getElementById('answerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = document.getElementById('message').value;
+            alert(`Message to ${user}: ${message}`);
+            // Here you can add the logic to send the message to the server or store it
+        });
+    </script>
 </body>
 </html>
+
 
