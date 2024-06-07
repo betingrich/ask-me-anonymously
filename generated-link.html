@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Link</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container centered">
+        <h2>Share Your Link</h2>
+        <p id="shareLink"></p>
+        <button class="btn" onclick="copyLink()">Copy Link</button>
+        <p>Share on:</p>
+        <div class="social-icons">
+            <a href="#" onclick="shareOnWhatsApp()">WhatsApp</a>
+            <a href="#" onclick="shareOnInstagram()">Instagram</a>
+            <a href="#" onclick="shareOnFacebook()">Facebook</a>
+        </div>
+        <p class="footer">Developed by Your Name</p>
+        <button class="btn" onclick="window.location.href='inbox.html'">View Messages</button>
+        <button class="btn" onclick="window.location.href='settings.html'">Settings</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
