@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsForm = document.getElementById('settingsForm');
     const shareLink = document.getElementById('shareLink');
     const messagesList = document.getElementById('messagesList');
+    const createOwnLinkButton = document.getElementById('createOwnLink');
 
     if (profileForm) {
         profileForm.addEventListener('submit', (event) => {
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(username + '_messages', JSON.stringify(messages));
             alert('Question sent: ' + question);
             document.getElementById('question').value = '';
+            createOwnLinkButton.style.display = 'block'; // Show the "Create Your Own Link" button
         });
     }
 
@@ -90,5 +92,9 @@ function shareOnInstagram() {
 
 function shareOnFacebook() {
     alert('Share on Facebook feature is not implemented yet.');
+}
+
+function redirectToHome() {
+    window.location.href = 'index.html';
 }
 
