@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const question = document.getElementById('question').value;
             const urlParams = new URLSearchParams(window.location.search);
             const username = urlParams.get('user');
-            let messages = JSON.parse(localStorage.getItem('messages')) || [];
-            messages.push({ user: username, question });
-            localStorage.setItem('messages', JSON.stringify(messages));
+            let messages = JSON.parse(localStorage.getItem(username + '_messages')) || [];
+            messages.push({ question });
+            localStorage.setItem(username + '_messages', JSON.stringify(messages));
             alert('Question sent: ' + question);
             document.getElementById('question').value = '';
         });
@@ -37,8 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const newUsername = document.getElementById('newUsername').value;
             const newProfilePic = document.getElementById('newProfilePic').files[0];
-            if (newUsername) {
+            const currentUsername = localStorage.getItem('username');
+            if (newUsername && currentUsername) {
                 localStorage.setItem('username', newUsername);
+                localStorage.setItem(newUsername + '_messages', localStorage.getItem(currentUsername + '_messages'));
+                localStorage.removeItem(currentUsername + '_messages');
             }
             if (newProfilePic) {
                 localStorage.setItem('profilePic', URL.createObjectURL(newProfilePic));
@@ -55,7 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (messagesList) {
-        let messages = JSON.parse(localStorage.getItem('messages')) || [];
+        const currentUsername = localStorage.getItem('username');
+        let messages = JSON.parse(localStorage.getItem(currentUsername + '_messages')) || [];
         messages.forEach(message => {
             const li = document.createElement('li');
             li.textContent = message.question;
@@ -87,4 +91,3 @@ function shareOnInstagram() {
 function shareOnFacebook() {
     alert('Share on Facebook feature is not implemented yet.');
 }
-
